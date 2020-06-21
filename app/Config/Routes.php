@@ -33,6 +33,9 @@ $routes->setAutoRoute(true);
 $routes->match(['get','post'],'/', 'Login::index');
 $routes->get('/logout', 'Login::logOut');
 
+$routes->get('api/basicDetails', 'API\UsersBasicDetails::index');
+$routes->get('api/test', 'API\UsersBasicDetails::test');
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing

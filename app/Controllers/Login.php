@@ -1,12 +1,10 @@
 <?php namespace App\Controllers;
 
 use App\Model\SystemUserModel;
-use CodeIgniter\Session\Session;
 
 
 class Login extends BaseController
 {
-
 
     public function index()
     {
@@ -34,13 +32,15 @@ class Login extends BaseController
                 ];
                 if ($model->validateUser($cred)) {
                     $this->session->set('loggedin',true);
-                    return redirect()->to('dashboard');
+                    return redirect()->to('admin/dashboard');
                 }
 
             } else {
                 $data['validation'] = $this->validator;
             }
         }
+
+
         echo view('templates/auth-header');
         echo view('login', $data);
         echo view('templates/auth-footer');
@@ -51,6 +51,8 @@ class Login extends BaseController
         $this->session->destroy();
         return redirect()->to(base_url('/'));
     }
+
+
 
 
 }

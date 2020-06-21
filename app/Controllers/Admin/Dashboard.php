@@ -1,13 +1,17 @@
-<?php namespace App\Controllers;
+<?php namespace App\Controllers\Admin;
 
-class Users extends BaseController
+use App\Controllers\BaseController;
+
+class Dashboard extends BaseController
 {
+
     public function index()
     {
         $currentUrl = uri_string();
+
         echo view('templates/header');
         echo view('templates/navbar', array('currentUrl' => $currentUrl));
-        echo view('users');
+        echo view('dashboard');
         echo view('templates/footer');
     }
 
