@@ -21,7 +21,6 @@ class SystemUserModel extends Model
     protected $useTimestamps = false;
     protected $createdField = 'created_at';
     protected $updatedField = 'updated_at';
-    protected $deletedField = 'deleted_at';
     protected $beforeInsert = ['beforeInsert'];
 
 
@@ -50,6 +49,8 @@ class SystemUserModel extends Model
                 'password' => [
                     'type' => 'TEXT',
                 ],
+                'created_at datetime default current_timestamp',
+                'updated_at datetime default current_timestamp on update current_timestamp',
             ];
             $forge->addField($fields)->createTable('SystemUsers', true);
         }
@@ -60,7 +61,7 @@ class SystemUserModel extends Model
 
         $user = $this->where('username', $data['username'])->first();;
         if ($user) {
-             return password_verify($data['password'],$user['password']);
+            return password_verify($data['password'], $user['password']);
         }
         return false;
 

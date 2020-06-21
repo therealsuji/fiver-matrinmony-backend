@@ -44,7 +44,9 @@ class BaseController extends Controller
         //--------------------------------------------------------------------
         // E.g.:
         $this->session = \Config\Services::session();
-        $userModel = model('App\Models\SystemUserModel');
+        model('App\Models\SystemUserModel');
+        model('App\Models\UserModel');
+        model('App\Models\UserBasicDetailsModel');
     }
 
 

@@ -21,7 +21,6 @@ class UserModel extends Model
     protected $useTimestamps = false;
     protected $createdField = 'created_at';
     protected $updatedField = 'updated_at';
-    protected $deletedField = 'deleted_at';
     protected $beforeInsert = ['beforeInsert'];
 
 
@@ -47,11 +46,15 @@ class UserModel extends Model
                     'type' => 'VARCHAR',
                     'constraint' => '100',
                 ],
-                'password' => [
-                    'type' => 'TEXT',
+                'banned' => [
+                    'type' => 'int',
+                    'constraint' => '2',
+                    'default' => '0',
                 ],
+                'created_at datetime default current_timestamp',
+                'updated_at datetime default current_timestamp on update current_timestamp',
             ];
-            $forge->addField($fields)->createTable('SystemUsers', true);
+            $forge->addField($fields)->createTable('Users', true);
         }
     }
 

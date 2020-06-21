@@ -8,7 +8,8 @@ class Login extends BaseController
 
     public function index()
     {
-
+//        $model = new SystemUserModel();
+//        $model->save(['username'=>'admin','password'=>'welcome']);
         $data = [];
         if ($this->request->getMethod() == 'post') {
             $rules = [

@@ -34,7 +34,7 @@ $routes->match(['get','post'],'/', 'Login::index');
 $routes->get('/logout', 'Login::logOut');
 
 $routes->get('api/basicDetails', 'API\UsersBasicDetails::index');
-$routes->get('api/test', 'API\UsersBasicDetails::test');
+$routes->post('api/setBasicDetails', 'API\UsersBasicDetails::test');
 
 /**
  * --------------------------------------------------------------------

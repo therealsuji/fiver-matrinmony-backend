@@ -13,15 +13,25 @@ class UserBasicDetailsModel extends Model
         parent::__construct($db, $validation);
     }
 
-    protected $table = 'Users';
+    protected $table = 'UsersBasicDetails';
     protected $primaryKey = 'id';
 
-    protected $allowedFields = [];
+    protected $allowedFields = [
+        'name',
+        'surname',
+        'dob',
+        'gender',
+        'martial_status',
+        'mobile_no',
+        'country',
+        'state',
+        'city',
+        'postal_code',
+    ];
 
     protected $useTimestamps = false;
     protected $createdField = 'created_at';
     protected $updatedField = 'updated_at';
-    protected $deletedField = 'deleted_at';
 
 
     public function createTable()
@@ -34,11 +44,48 @@ class UserBasicDetailsModel extends Model
                     'constraint' => 5,
                     'unsigned' => true,
                     'unique' => true,
-                    'auto_increment' => true
+                    'auto_increment' => true,
                 ],
-
+                'name' => [
+                    'type' => 'VARCHAR',
+                    'constraint' => '100',
+                ],
+                'surname' => [
+                    'type' => 'VARCHAR',
+                    'constraint' => '100',
+                ],
+                'dob' => [
+                    'type' => 'VARCHAR',
+                    'constraint' => '25',
+                ],
+                'gender' => [
+                    'type' => 'INT',
+                    'constraint' => '2',
+                ],
+                'martial_status' => [
+                    'type' => 'INT',
+                    'constraint' => '2',
+                ],
+                'mobile_no' => [
+                    'type' => 'VARCHAR',
+                    'constraint' => '25',
+                ],
+                'country' => [
+                    'type' => 'INT',
+                    'constraint' => '2',
+                ],
+                'state' => [
+                    'type' => 'INT',
+                    'constraint' => '2',
+                ],
+                'city' => [
+                    'type' => 'INT',
+                    'constraint' => '2',
+                ],
+                'created_at datetime default current_timestamp',
+                'updated_at datetime default current_timestamp on update current_timestamp',
             ];
-            $forge->addField($fields)->createTable('Users', true);
+            $forge->addField($fields)->createTable('UsersBasicDetails', true);
         }
     }
 
