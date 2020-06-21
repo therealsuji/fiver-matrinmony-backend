@@ -1,5 +1,5 @@
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="<?= base_url('assets/js/jquery-3.5.1.min.js')?>"></script>
+<script src="<?= base_url('assets/js/bootstrap.min.js')?>"></script>
 </body>
 </html>
