@@ -5,30 +5,29 @@ namespace App\Model;
 use  \CodeIgniter\Model;
 use Config\Database;
 
-class UserBasicDetailsModel extends Model
+class   UserPersonalDetailsModel extends Model
 {
     public function __construct(\CodeIgniter\Database\ConnectionInterface &$db = null, \CodeIgniter\Validation\ValidationInterface $validation = null)
     {
-     ;
+
         $this->createTable();
         parent::__construct($db, $validation);
     }
 
-    protected $table = 'UserBasicDetails';
+    protected $table = 'UserPersonalDetails';
     protected $primaryKey = 'id';
 
     protected $allowedFields = [
         'user_id',
-        'name',
-        'surname',
-        'dob',
-        'gender',
-        'martial_status',
-        'mobile_no',
-        'country',
-        'state',
-        'city',
-        'postal_code',
+        'highest_edu',
+        'specialization',
+        'occupation',
+        'designation',
+        'annual_income',
+        'mother_tongue',
+        'language',
+        'drink',
+        'smoke',
     ];
 
     protected $useTimestamps = false;
@@ -47,49 +46,47 @@ class UserBasicDetailsModel extends Model
                     'constraint' => 5,
                     'unsigned' => true,
                     'unique' => true,
-                    'auto_increment' => true,
                 ],
-                'name' => [
+                'highest_edu' => [
+                    'type' => 'INT',
+                    'constraint' => 5,
+                ],
+                'specialization' => [
                     'type' => 'VARCHAR',
                     'constraint' => '100',
                 ],
-                'surname' => [
+                'occupation' => [
+                    'type' => 'INT',
+                    'constraint' => '5',
+                ],
+                'designation' => [
                     'type' => 'VARCHAR',
                     'constraint' => '100',
                 ],
-                'dob' => [
-                    'type' => 'VARCHAR',
-                    'constraint' => '25',
+                'annual_income' => [
+                    'type' => 'INT',
+                    'constraint' => '5',
                 ],
-                'gender' => [
+                'mother_tongue' => [
+                    'type' => 'INT',
+                    'constraint' => '5',
+                ],
+                'language' => [
+                    'type' => 'INT',
+                    'constraint' => '5',
+                ],
+                'drink' => [
                     'type' => 'INT',
                     'constraint' => '2',
                 ],
-                'martial_status' => [
+                'smoke' => [
                     'type' => 'INT',
                     'constraint' => '2',
                 ],
-                'mobile_no' => [
-                    'type' => 'VARCHAR',
-                    'constraint' => '25',
-                ],
-                'country' => [
-                    'type' => 'INT',
-                    'constraint' => '2',
-                ],
-                'state' => [
-                    'type' => 'INT',
-                    'constraint' => '2',
-                ],
-                'city' => [
-                    'type' => 'INT',
-                    'constraint' => '2',
-                ],
-
                 'created_at datetime default current_timestamp',
                 'updated_at datetime default current_timestamp on update current_timestamp',
             ];
-             $forge->addField($fields)->createTable('UserBasicDetails', true);
+            $forge->addField($fields)->createTable('UserPersonalDetails', true);
         }
     }
 

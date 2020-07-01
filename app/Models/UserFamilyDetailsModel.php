@@ -5,7 +5,7 @@ namespace App\Model;
 use  \CodeIgniter\Model;
 use Config\Database;
 
-class UserModel extends Model
+class UserFamilyDetailsModel extends Model
 {
     public function __construct(\CodeIgniter\Database\ConnectionInterface &$db = null, \CodeIgniter\Validation\ValidationInterface $validation = null)
     {
@@ -14,53 +14,61 @@ class UserModel extends Model
         parent::__construct($db, $validation);
     }
 
-    protected $table = 'Users';
+    protected $table = 'UserFamilyDetails';
     protected $primaryKey = 'id';
 
-    protected $allowedFields = ['username', 'password','banned'];
+    protected $allowedFields = [
+        'user_id',
+        'fathers_name',
+        'mothers_name',
+        'no_brothers',
+        'no_sisters',
+        'parent_contact',
+    ];
 
     protected $useTimestamps = false;
     protected $createdField = 'created_at';
     protected $updatedField = 'updated_at';
+
 
     public function createTable()
     {
         $forge = Database::forge();
         if ($forge) {
             $fields = [
-                'id' => [
+
+                'user_id' => [
                     'type' => 'INT',
                     'constraint' => 5,
                     'unsigned' => true,
                     'unique' => true,
-                    'auto_increment' => true
                 ],
-                'username' => [
+                'fathers_name' => [
                     'type' => 'VARCHAR',
-                    'constraint' => '100',
+                    'constraint' => 100,
                 ],
-                'password' => [
-                    'type' => 'TEXT',
+                'mothers_name' => [
+                    'type' => 'VARCHAR',
+                    'constraint' => 100,
                 ],
-                'banned' => [
-                    'type' => 'int',
-                    'constraint' => '2',
-                    'default' => '0',
+                'no_brothers' => [
+                    'type' => 'INT',
+                    'constraint' => 5,
                 ],
+                'no_sisters' => [
+                    'type' => 'INT',
+                    'constraint' => 5,
+                ],
+                'parent_contact' => [
+                    'type' => 'INT',
+                    'constraint' => 5,
+                ],
+
                 'created_at datetime default current_timestamp',
                 'updated_at datetime default current_timestamp on update current_timestamp',
             ];
-            $forge->addField($fields)->createTable('Users', true);
+            $forge->addField($fields)->createTable('UserFamilyDetails', true);
         }
-    }
-
-    public function validateUser(array $data)
-    {
-        $user = $this->where('username', $data['username'])->first();;
-        if ($user) {
-             return $data['password'] == $user['password'];
-        }
-        return false;
     }
 
 

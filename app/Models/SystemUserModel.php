@@ -3,12 +3,13 @@
 namespace App\Model;
 
 use  \CodeIgniter\Model;
+use Config\Database;
 
 class SystemUserModel extends Model
 {
     public function __construct(\CodeIgniter\Database\ConnectionInterface &$db = null, \CodeIgniter\Validation\ValidationInterface $validation = null)
     {
-        db_connect();
+
         $this->createTable();
         parent::__construct($db, $validation);
     }
@@ -32,7 +33,7 @@ class SystemUserModel extends Model
 
     public function createTable()
     {
-        $forge = \Config\Database::forge();
+        $forge = Database::forge();
         if ($forge) {
             $fields = [
                 'id' => [
