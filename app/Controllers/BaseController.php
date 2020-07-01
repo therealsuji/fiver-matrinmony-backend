@@ -49,6 +49,24 @@ class BaseController extends Controller
         model('App\Models\SystemUserModel');
         model('App\Models\UserModel');
         model('App\Models\UserBasicDetailsModel');
+        model('App\Models\UserChurchDetailsModel');
+        model('App\Models\UserFamilyDetailsModel');
+        model('App\Models\UserPersonalDetailsModel');
+        model('App\Models\UserPhysicalDetailsModel');
+        model('App\Models\Fields\AnnualIncomeModel');
+        model('App\Models\Fields\BloodGroupModel');
+        model('App\Models\Fields\BodyTypeModel');
+        model('App\Models\Fields\ComplexionModel');
+        model('App\Models\Fields\DenominationModel');
+        model('App\Models\Fields\DenominationModel');
+        model('App\Models\Fields\DietModel');
+        model('App\Models\Fields\HeightModel');
+        model('App\Models\Fields\HighestEducationModel');
+        model('App\Models\Fields\LanguageModel');
+        model('App\Models\Fields\MaritalStatusModel');
+        model('App\Models\Fields\OccupationModel');
+        model('App\Models\Fields\PartnerExpectationModel');
+        model('App\Models\Fields\PartnerExpectationModel');
     }
 
 

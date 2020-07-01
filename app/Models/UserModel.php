@@ -14,7 +14,7 @@ class UserModel extends Model
         parent::__construct($db, $validation);
     }
 
-    protected $table = 'Users';
+    protected $table = 'users';
     protected $primaryKey = 'id';
 
     protected $allowedFields = ['username', 'password','banned'];
@@ -50,7 +50,7 @@ class UserModel extends Model
                 'created_at datetime default current_timestamp',
                 'updated_at datetime default current_timestamp on update current_timestamp',
             ];
-            $forge->addField($fields)->createTable('Users', true);
+            $forge->addField($fields)->createTable('users', true);
         }
     }
 

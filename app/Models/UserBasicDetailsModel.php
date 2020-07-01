@@ -14,8 +14,8 @@ class UserBasicDetailsModel extends Model
         parent::__construct($db, $validation);
     }
 
-    protected $table = 'UserBasicDetails';
-    protected $primaryKey = 'id';
+    protected $table = 'user_basic_details';
+    protected $primaryKey = 'user_id';
 
     protected $allowedFields = [
         'user_id',
@@ -89,7 +89,7 @@ class UserBasicDetailsModel extends Model
                 'created_at datetime default current_timestamp',
                 'updated_at datetime default current_timestamp on update current_timestamp',
             ];
-             $forge->addField($fields)->createTable('UserBasicDetails', true);
+             $forge->addField($fields)->createTable('user_basic_details', true);
         }
     }
 

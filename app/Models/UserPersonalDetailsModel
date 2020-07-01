@@ -14,8 +14,8 @@ class   UserPersonalDetailsModel extends Model
         parent::__construct($db, $validation);
     }
 
-    protected $table = 'UserPersonalDetails';
-    protected $primaryKey = 'id';
+    protected $table = 'user_personal_details';
+    protected $primaryKey = 'user_id';
 
     protected $allowedFields = [
         'user_id',
@@ -28,6 +28,7 @@ class   UserPersonalDetailsModel extends Model
         'language',
         'drink',
         'smoke',
+        'diet',
     ];
 
     protected $useTimestamps = false;
@@ -82,11 +83,14 @@ class   UserPersonalDetailsModel extends Model
                 'smoke' => [
                     'type' => 'INT',
                     'constraint' => '2',
+                ],'diet' => [
+                    'type' => 'INT',
+                    'constraint' => '2',
                 ],
                 'created_at datetime default current_timestamp',
                 'updated_at datetime default current_timestamp on update current_timestamp',
             ];
-            $forge->addField($fields)->createTable('UserPersonalDetails', true);
+            $forge->addField($fields)->createTable('user_personal_details', true);
         }
     }
 

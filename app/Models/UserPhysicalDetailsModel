@@ -14,8 +14,8 @@ class  UserPhysicalDetailsModel extends Model
         parent::__construct($db, $validation);
     }
 
-    protected $table = 'UserPhysicalDetails';
-    protected $primaryKey = 'id';
+    protected $table = 'user_physical_details';
+    protected $primaryKey = 'user_id';
 
     protected $allowedFields = [
         'user_id',
@@ -66,7 +66,7 @@ class  UserPhysicalDetailsModel extends Model
                 'created_at datetime default current_timestamp',
                 'updated_at datetime default current_timestamp on update current_timestamp',
             ];
-            $forge->addField($fields)->createTable('UserPhysicalDetails', true);
+            $forge->addField($fields)->createTable('user_physical_details', true);
         }
     }
 
