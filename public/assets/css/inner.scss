@@ -1,3 +1,42 @@
-.navbar-brand img{
+html, body {
+  height: 100%;
+}
+
+.navbar-brand img {
   max-width: 80px;
+}
+
+.nav-pills {
+  .nav-link {
+    border-radius: 0;
+    cursor: pointer;
+  }
+
+  .nav-link.active {
+    background-color: #8da9c4;
+  }
+}
+
+.nav-column {
+  background-color: #EEF4ED;
+  height: 100%;
+}
+
+a {
+  color: #3a4e5f;
+}
+
+.bg-dark {
+  background-color: #0b2545 !important;
+}
+
+.value-box {
+  margin-top: 15px;
+  padding: 10px;
+  box-shadow: 1px 1px 7px 3px #0000001f;
+}
+
+.datatable {
+  margin-top: 20px;
+  padding-right: 40px;
 }
