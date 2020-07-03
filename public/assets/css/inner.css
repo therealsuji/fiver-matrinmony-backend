@@ -38,4 +38,20 @@ a {
   padding-right: 40px;
 }
 
+.value-edit-label {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.label-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon {
+  cursor: pointer;
+  font-size: 20px;
+  color: #134074;
+}
+
 /*# sourceMappingURL=inner.css.map */

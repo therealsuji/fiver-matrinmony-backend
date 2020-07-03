@@ -5,12 +5,11 @@ namespace App\Model;
 use  \CodeIgniter\Model;
 use Config\Database;
 
-class  MaritalStatusModel extends Model
+class MaritalStatusModel extends Model
 {
     public function __construct(\CodeIgniter\Database\ConnectionInterface &$db = null, \CodeIgniter\Validation\ValidationInterface $validation = null)
     {
-
-        $this->createTable();
+         $this->createTable();
         parent::__construct($db, $validation);
     }
 

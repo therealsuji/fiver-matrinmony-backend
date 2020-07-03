@@ -22,8 +22,64 @@ class FieldManager extends BaseController
         $currentUrl = uri_string();
         echo view('templates/header');
         echo view('templates/navbar', array('currentUrl' => $currentUrl));
-        echo view('fieldManager');
+        $model = new AnnualIncomeModel();
+        $data = ['data' => $model->findAll()];
+        echo view('fieldManager', $data);
         echo view('templates/footer');
+    }
+
+    public function getFieldValues()
+    {
+        if ($this->request->isAJAX()) {
+            $formType = $this->request->getPost('formType');
+            $model = $this->getModelType($formType);
+            return json_encode($model->findAll());
+        }
+    }
+
+    private function getModelType($formType)
+    {
+        $model = null;
+
+        switch ($formType) {
+            case "annualincome":
+                $model = new AnnualIncomeModel();
+                break;
+            case "bloodgroup":
+                $model = new BloodGroupModel();
+                break;
+            case "bodytype":
+                $model = new BodyTypeModel();
+                break;
+            case "complexion":
+                $model = new ComplexionModel();
+                break;
+            case "denomination":
+                $model = new DenominationModel();
+                break;
+            case "diet":
+                $model = new DietModel();
+                break;
+            case "height":
+                $model = new HeightModel();
+                break;
+            case "highestedu":
+                $model = new HighestEducationModel();
+                break;
+            case "language":
+                $model = new LanguageModel();
+                break;
+            case "martialstatus":
+                $model = new MaritalStatusModel();
+                break;
+            case "occupation":
+                $model = new OccupationModel();
+                break;
+            case "partnerexpec":
+                $model = new PartnerExpectationModel();
+                break;
+        }
+        return $model;
     }
 
     public function fieldvaluechange()
@@ -31,57 +87,29 @@ class FieldManager extends BaseController
 
         if ($this->request->isAJAX()) {
             $value = $this->request->getPost('value');
+            $id = $this->request->getPost('id');
             $formType = $this->request->getPost('formType');
             $action = $this->request->getPost('action');
-            $model = null;
-
-            switch ($formType) {
-                case "annualincome":
-                    $model = new AnnualIncomeModel();
-                    break;
-                case "bloodgroup":
-                    $model = new BloodGroupModel();
-                    break;
-                case "bodytype":
-                    $model = new BodyTypeModel();
-                    break;
-                case "complexion":
-                    $model = new ComplexionModel();
-                    break;
-                case "denomination":
-                    $model = new DenominationModel();
-                    break;
-                case "diet":
-                    $model = new DietModel();
-                    break;
-                case "height":
-                    $model = new HeightModel();
-                    break;
-                case "highestedu":
-                    $model = new HighestEducationModel();
-                    break;
-                case "language":
-                    $model = new LanguageModel();
-                    break;
-                case "martialstatus":
-                    $model = new MaritalStatusModel();
-                    break;
-                case "occupation":
-                    $model = new OccupationModel();
-                    break;
-                case "partnerexpec":
-                    $model = new PartnerExpectationModel();
-                    break;
-            }
-
+            $model = $this->getModelType($formType);
             if ($action == 'add') {
-                $model->save(["field_value" => $value]);
-            } elseif ($action == 'del') {
-                $model->delete($value);
-            } elseif ($action == 'edit') {
-                $model->update($value, ["field_value" => $value]);
+                $id = $model->save(["field_value" => $value]);
+
+                return json_encode([ 'status' => 200]);
+            } elseif ($action == 'del' && $id) {
+                if ($id) {
+                    $model->delete($id);
+                    return json_encode(['status' => 200]);
+                }
+                return json_encode(['status' => 400]);
+            } elseif ($action == 'edit' && $id) {
+                if ($id) {
+                    $id = $model->update($id, ["field_value" => $value]);
+                    return json_encode(['status' => 200]);
+                }
+                return json_encode(['status' => 400]);
+
             }
-            return json_encode(['status' => 200]);
+
         }
-     }
+    }
 }

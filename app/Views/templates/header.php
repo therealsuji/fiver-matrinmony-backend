@@ -10,6 +10,8 @@
     <link href="<?= base_url('assets/css/bootstrap.min.css')?>" rel="stylesheet"  >
     <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet"  >
     <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.css" rel="stylesheet"  >
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
      <link href="<?= base_url('assets/css/inner.css')?>"  rel="stylesheet" type="text/css"  >
 </head>
 <body>
