@@ -2,9 +2,8 @@
 
 // Valid PHP Version?
 $minPHPVersion = '7.2';
-if (phpversion() < $minPHPVersion)
-{
-	die("Your PHP version must be {$minPHPVersion} or higher to run CodeIgniter. Current version: " . phpversion());
+if (phpversion() < $minPHPVersion) {
+    die("Your PHP version must be {$minPHPVersion} or higher to run CodeIgniter. Current version: " . phpversion());
 }
 unset($minPHPVersion);
 
@@ -42,4 +41,12 @@ $app = require rtrim($paths->systemDirectory, '/ ') . '/bootstrap.php';
  * Now that everything is setup, it's time to actually fire
  * up the engines and make this app do its thang.
  */
+
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, Authorization");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+$method = $_SERVER['REQUEST_METHOD'];
+if ($method == "OPTIONS") {
+    die();
+}
 $app->run();
