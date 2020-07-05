@@ -33,9 +33,21 @@ $routes->setAutoRoute(true);
 $routes->match(['get','post'],'/', 'Login::index');
 $routes->get('/logout', 'Login::logOut');
 
-$routes->get('api/basicDetails', 'API\UsersBasicDetails::index');
-$routes->post('api/setBasicDetails', 'API\UsersBasicDetails::test');
+$routes->post('api/register-user', 'API\User::registerUser');
+$routes->post('api/login-user', 'API\User::loginUser');
+$routes->post('api/basic-details', 'API\User::basicDetails');
+$routes->post('api/family-details', 'API\User::familyDetails');
+$routes->post('api/church-details', 'API\User::churchDetails');
+$routes->post('api/personal-details', 'API\User::personalDetails');
+$routes->post('api/physical-details', 'API\User::physicalDetails');
 
+
+$routes->get('api/basic-details/(:segment)', 'API\User::getUserBasicDetails/$1');
+$routes->get('api/family-details/(:userId)', 'API\User::familyDetails');
+$routes->get('api/church-details/(:userId)', 'API\User::churchDetails');
+$routes->get('api/personal-details/(:userId)', 'API\User::personalDetails');
+$routes->get('api/physical-details/(:userId)', 'API\User::physicalDetails');
+$routes->options()
 /**
  * --------------------------------------------------------------------
  * Additional Routing

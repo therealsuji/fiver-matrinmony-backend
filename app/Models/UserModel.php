@@ -23,7 +23,7 @@ class UserModel extends Model
     protected $createdField = 'created_at';
     protected $updatedField = 'updated_at';
 
-    public function createTable()
+    private function createTable()
     {
         $forge = Database::forge();
         if ($forge) {
@@ -42,6 +42,12 @@ class UserModel extends Model
                 'password' => [
                     'type' => 'TEXT',
                 ],
+                'registrationComplete' => [
+                    'type' => 'int',
+                    'constraint' => '2',
+                    'default' => '0',
+                ],
+
                 'banned' => [
                     'type' => 'int',
                     'constraint' => '2',
@@ -53,7 +59,9 @@ class UserModel extends Model
             $forge->addField($fields)->createTable('users', true);
         }
     }
+    public function assignPassword(){
 
+    }
     public function validateUser(array $data)
     {
         $user = $this->where('username', $data['username'])->first();;

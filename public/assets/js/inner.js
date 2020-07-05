@@ -32,7 +32,6 @@ function getNewValues(formType) {
             }
             return newItem;
         })
-        console.log(data);
         $('#table').dataTable().fnClearTable();
         $('#table').dataTable().fnAddData(data);
 
