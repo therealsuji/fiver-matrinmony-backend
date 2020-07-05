@@ -47,7 +47,7 @@ $routes->get('api/family-details/(:userId)', 'API\User::familyDetails');
 $routes->get('api/church-details/(:userId)', 'API\User::churchDetails');
 $routes->get('api/personal-details/(:userId)', 'API\User::personalDetails');
 $routes->get('api/physical-details/(:userId)', 'API\User::physicalDetails');
-$routes->options()
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing
