@@ -7,12 +7,12 @@ use Config\Database;
 
 class UserModel extends Model
 {
-    public function __construct(\CodeIgniter\Database\ConnectionInterface &$db = null, \CodeIgniter\Validation\ValidationInterface $validation = null)
-    {
-
-        $this->createTable();
-        parent::__construct($db, $validation);
-    }
+//    public function __construct(\CodeIgniter\Database\ConnectionInterface &$db = null, \CodeIgniter\Validation\ValidationInterface $validation = null)
+//    {
+//
+//        $this->createTable();
+//        parent::__construct($db, $validation);
+//    }
 
     protected $table = 'users';
     protected $primaryKey = 'id';
@@ -47,7 +47,11 @@ class UserModel extends Model
                     'constraint' => '2',
                     'default' => '0',
                 ],
-
+                'verified' => [
+                    'type' => 'int',
+                    'constraint' => '2',
+                    'default' => '0',
+                ],
                 'banned' => [
                     'type' => 'int',
                     'constraint' => '2',

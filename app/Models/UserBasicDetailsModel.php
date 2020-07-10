@@ -7,12 +7,12 @@ use Config\Database;
 
 class UserBasicDetailsModel extends Model
 {
-    public function __construct(\CodeIgniter\Database\ConnectionInterface &$db = null, \CodeIgniter\Validation\ValidationInterface $validation = null)
-    {
-     ;
-        $this->createTable();
-        parent::__construct($db, $validation);
-    }
+//    public function __construct(\CodeIgniter\Database\ConnectionInterface &$db = null, \CodeIgniter\Validation\ValidationInterface $validation = null)
+//    {
+//     ;
+//        $this->createTable();
+//        parent::__construct($db, $validation);
+//    }
 
     protected $table = 'user_basic_details';
     protected $primaryKey = 'user_id';
@@ -62,8 +62,8 @@ class UserBasicDetailsModel extends Model
                     'constraint' => '25',
                 ],
                 'gender' => [
-                    'type' => 'INT',
-                    'constraint' => '2',
+                    'type' => 'VARCHAR',
+                    'constraint' => '10',
                 ],
                 'martial_status' => [
                     'type' => 'INT',
@@ -74,16 +74,16 @@ class UserBasicDetailsModel extends Model
                     'constraint' => '25',
                 ],
                 'country' => [
-                    'type' => 'INT',
-                    'constraint' => '2',
+                    'type' => 'VARCHAR',
+                    'constraint' => '100',
                 ],
                 'state' => [
-                    'type' => 'INT',
-                    'constraint' => '2',
+                    'type' => 'VARCHAR',
+                    'constraint' => '100',
                 ],
                 'city' => [
-                    'type' => 'INT',
-                    'constraint' => '2',
+                    'type' => 'VARCHAR',
+                    'constraint' => '100',
                 ],
                 'postal_code' => [
                     'type' => 'VARCHAR',

@@ -7,12 +7,12 @@ use Config\Database;
 
 class  UserPhysicalDetailsModel extends Model
 {
-    public function __construct(\CodeIgniter\Database\ConnectionInterface &$db = null, \CodeIgniter\Validation\ValidationInterface $validation = null)
-    {
-
-        $this->createTable();
-        parent::__construct($db, $validation);
-    }
+//    public function __construct(\CodeIgniter\Database\ConnectionInterface &$db = null, \CodeIgniter\Validation\ValidationInterface $validation = null)
+//    {
+//
+//        $this->createTable();
+//        parent::__construct($db, $validation);
+//    }
 
     protected $table = 'user_physical_details';
     protected $primaryKey = 'user_id';
@@ -23,6 +23,7 @@ class  UserPhysicalDetailsModel extends Model
         'weight',
         'complexion',
         'blood_group',
+        'body_type',
         'disability',
     ];
 
@@ -56,6 +57,10 @@ class  UserPhysicalDetailsModel extends Model
                     'constraint' => '5',
                 ],
                 'blood_group' => [
+                    'type' => 'INT',
+                    'constraint' => '5',
+                ],
+                'body_type' => [
                     'type' => 'INT',
                     'constraint' => '5',
                 ],

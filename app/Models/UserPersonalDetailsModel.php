@@ -7,12 +7,12 @@ use Config\Database;
 
 class   UserPersonalDetailsModel extends Model
 {
-    public function __construct(\CodeIgniter\Database\ConnectionInterface &$db = null, \CodeIgniter\Validation\ValidationInterface $validation = null)
-    {
-
-        $this->createTable();
-        parent::__construct($db, $validation);
-    }
+//    public function __construct(\CodeIgniter\Database\ConnectionInterface &$db = null, \CodeIgniter\Validation\ValidationInterface $validation = null)
+//    {
+//
+//        $this->createTable();
+//        parent::__construct($db, $validation);
+//    }
 
     protected $table = 'user_personal_details';
     protected $primaryKey = 'user_id';
@@ -29,6 +29,7 @@ class   UserPersonalDetailsModel extends Model
         'drink',
         'smoke',
         'diet',
+        'partner_expectation',
     ];
 
     protected $useTimestamps = false;
@@ -84,6 +85,9 @@ class   UserPersonalDetailsModel extends Model
                     'type' => 'INT',
                     'constraint' => '2',
                 ],'diet' => [
+                    'type' => 'INT',
+                    'constraint' => '2',
+                ],'partner_expectation' => [
                     'type' => 'INT',
                     'constraint' => '2',
                 ],

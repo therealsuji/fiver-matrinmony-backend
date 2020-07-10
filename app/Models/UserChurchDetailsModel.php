@@ -7,12 +7,12 @@ use Config\Database;
 
 class  UserChurchDetailsModel extends Model
 {
-    public function __construct(\CodeIgniter\Database\ConnectionInterface &$db = null, \CodeIgniter\Validation\ValidationInterface $validation = null)
-    {
-
-        $this->createTable();
-        parent::__construct($db, $validation);
-    }
+//    public function __construct(\CodeIgniter\Database\ConnectionInterface &$db = null, \CodeIgniter\Validation\ValidationInterface $validation = null)
+//    {
+//
+//        $this->createTable();
+//        parent::__construct($db, $validation);
+//    }
 
     protected $table = 'user_church_details';
     protected $primaryKey = 'user_id';
