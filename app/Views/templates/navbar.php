@@ -17,6 +17,9 @@
             <li class="nav-item <?php if ($currentUrl == 'admin/users') { ?> active <?php } ?>">
                 <a class="nav-link" href="<?= base_url('admin/users') ?>">Users</a>
             </li>
+            <li class="nav-item <?php if ($currentUrl == 'admin/country') { ?> active <?php } ?>">
+                <a class="nav-link" href="<?= base_url('admin/country') ?>">Country Manager</a>
+            </li>
         </ul>
         <div class="  my-2 my-lg-0">
             <a href="<?= base_url('/logout')?>">

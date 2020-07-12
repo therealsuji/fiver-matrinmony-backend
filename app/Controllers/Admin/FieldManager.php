@@ -4,7 +4,9 @@ use App\Controllers\BaseController;
 use App\Model\AnnualIncomeModel;
 use App\Model\BloodGroupModel;
 use App\Model\BodyTypeModel;
+use App\Model\CityModel;
 use App\Model\ComplexionModel;
+use App\Model\CountryModel;
 use App\Model\DenominationModel;
 use App\Model\DietModel;
 use App\Model\HeightModel;
@@ -13,6 +15,7 @@ use App\Model\LanguageModel;
 use App\Model\MaritalStatusModel;
 use App\Model\OccupationModel;
 use App\Model\PartnerExpectationModel;
+use App\Model\StateModel;
 
 class FieldManager extends BaseController
 {
@@ -23,7 +26,14 @@ class FieldManager extends BaseController
         echo view('templates/header');
         echo view('templates/navbar', array('currentUrl' => $currentUrl));
         $model = new AnnualIncomeModel();
-        $data = ['data' => $model->findAll()];
+        $data['data'] =$model->findAll();
+        $model = new CountryModel();
+        $data['country'] =$model->findAll();
+        $model = new CityModel();
+        $data['city'] =$model->findAll();
+        $model = new StateModel();
+        $data['state'] =$model->findAll();
+
         echo view('fieldManager', $data);
         echo view('templates/footer');
     }
@@ -37,10 +47,12 @@ class FieldManager extends BaseController
         }
     }
 
+
+
+
     private function getModelType($formType)
     {
         $model = null;
-
         switch ($formType) {
             case "annualincome":
                 $model = new AnnualIncomeModel();
@@ -81,6 +93,8 @@ class FieldManager extends BaseController
         }
         return $model;
     }
+
+
 
     public function fieldvaluechange()
     {

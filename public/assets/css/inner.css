@@ -24,6 +24,11 @@ a {
   color: #3a4e5f;
 }
 
+label {
+  font-weight: 500;
+  color: #606060;
+}
+
 .bg-dark {
   background-color: #0b2545 !important;
 }
@@ -53,6 +58,61 @@ a {
   cursor: pointer;
   font-size: 20px;
   color: #134074;
+}
+
+.heading {
+  font-size: 22px;
+  color: #1f5faf;
+  font-weight: 600;
+  margin-top: 15px;
+}
+
+.row.action-btns {
+  margin-top: 25px;
+  display: flex;
+}
+.row.action-btns .btn {
+  margin-left: 15px;
+  min-width: 250px;
+}
+.row.action-btns .wrapper {
+  float: right;
+}
+
+.margin-container {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.back {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.stat label {
+  font-size: 22px;
+  color: #1f5faf;
+  font-weight: 600;
+}
+.stat div {
+  color: #0b2545;
+  font-size: 25px;
+}
+
+.field-content {
+  width: 100%;
+}
+
+.field-content .tab-pane {
+  display: none;
+}
+
+.show {
+  display: block !important;
+}
+
+.wide-table {
+  width: 100%;
 }
 
 /*# sourceMappingURL=inner.css.map */

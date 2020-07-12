@@ -103,7 +103,7 @@ class User extends ResourceController
             $user_id = $model->getInsertID();
             $emptyData = ['user_id' => $user_id];
             $model = new UserBasicDetailsModel();
-            $model->insert($emptyData);
+            $model->insert( ['user_id' => $user_id,'mobile_no'=>$body->username]);
             $model = new UserFamilyDetailsModel();
             $model->insert($emptyData);
             $model = new UserChurchDetailsModel();
@@ -207,6 +207,7 @@ class User extends ResourceController
                     'name_church' => $body->name_church,
                     'church_add' => $body->church_add,
                     'year_baptism' => $body->year_baptism,
+                    'ministry' => $body->ministry,
                 ];
                 $model = new UserChurchDetailsModel();
                 $model->update(['user_id', $body->user_id], $data);
@@ -238,6 +239,7 @@ class User extends ResourceController
             if ($userExist) {
                 $data = [
                     'highest_edu' => $body->highest_edu,
+                    'partner_expectation' => $body->partner_expectation,
                     'specialization' => $body->specialization,
                     'occupation' => $body->occupation,
                     'designation' => $body->designation,
@@ -282,10 +284,14 @@ class User extends ResourceController
                     'weight' => $body->weight,
                     'complexion' => $body->complexion,
                     'blood_group' => $body->blood_group,
+                    'body_type' => $body->body_type,
                     'disability' => $body->disability,
                 ];
                 $model = new UserPhysicalDetailsModel();
                 $model->update(['user_id', $body->user_id], $data);
+
+                $model = new UserModel();
+                $model->isRegistrationComplete($body->user_id);
 
                 return $this->respond(['success' => true]);
             }
@@ -305,84 +311,18 @@ class User extends ResourceController
     public function getUser($user_id)
     {
         $model = new UserModel();
-        $model->select('user_church_details.*,user_family_details.*,user_personal_details.*,user_physical_details.*,user_basic_details.*,
-        fl_annual_income.field_value as annual_income,
-        fl_blood_group.field_value as blood_group,
-        fl_body_type.field_value as body_type,
-        fl_complexion.field_value as complexion,
-        fl_denomination.field_value as denomination,
-        fl_diet.field_value as diet,
-        fl_height.field_value as height,
-        fl_highest_education.field_value as highest_edu,
-        fl_language.field_value as language,
-        fl_martial_status.field_value as martial_status,
-        fl_occupation.field_value as occupation,
-        fl_partner_expectation.field_value as partner_expectation
-        ');
-        $model->where('users.id', $user_id);
-        $model->where('users.verified', 1);
-        $model->where('users.banned', 0);
+        $data = $model->getUsers($user_id);
 
-        $model->join('user_basic_details', 'user_basic_details.user_id = users.id');
-        $model->join('user_church_details', 'user_church_details.user_id = users.id');
-        $model->join('user_family_details', 'user_family_details.user_id = users.id');
-        $model->join('user_personal_details', 'user_personal_details.user_id = users.id');
-        $model->join('user_physical_details', 'user_physical_details.user_id = users.id');
-        $model->join('fl_annual_income', 'fl_annual_income.id = user_personal_details.annual_income', 'left');
-        $model->join('fl_blood_group', 'fl_blood_group.id = user_physical_details.blood_group', 'left');
-        $model->join('fl_body_type', 'fl_body_type.id = user_physical_details.body_type', 'left');
-        $model->join('fl_complexion', 'fl_complexion.id = user_physical_details.complexion', 'left');
-        $model->join('fl_denomination', 'fl_denomination.id = user_church_details.denomination', 'left');
-        $model->join('fl_diet', 'fl_diet.id = user_personal_details.diet', 'left');
-        $model->join('fl_height', 'fl_height.id = user_physical_details.height', 'left');
-        $model->join('fl_highest_education', 'fl_highest_education.id = user_personal_details.highest_edu', 'left');
-        $model->join('fl_language', 'fl_highest_education.id = user_personal_details.language', 'left');
-        $model->join('fl_martial_status', 'fl_martial_status.id = user_basic_details.martial_status', 'left');
-        $model->join('fl_occupation', 'fl_highest_education.id = user_personal_details.occupation', 'left');
-        $model->join('fl_partner_expectation', 'fl_highest_education.id = user_personal_details.partner_expectation', 'left');
-
-        return $this->respond(['data' => $model->get()->getResultArray(), 'success' => true]);
+        return $this->respond(['data' => $data, 'success' => true]);
     }
 
 
     public function getAllUsers()
     {
         $model = new UserModel();
-        $model->select('user_church_details.*,user_family_details.*,user_personal_details.*,user_physical_details.*,user_basic_details.*,
-        fl_annual_income.field_value as annual_income,
-        fl_blood_group.field_value as blood_group,
-        fl_body_type.field_value as body_type,
-        fl_complexion.field_value as complexion,
-        fl_denomination.field_value as denomination,
-        fl_diet.field_value as diet,
-        fl_height.field_value as height,
-        fl_highest_education.field_value as highest_edu,
-        fl_language.field_value as language,
-        fl_martial_status.field_value as martial_status,
-        fl_occupation.field_value as occupation,
-        fl_partner_expectation.field_value as partner_expectation
-        ');
-
-        $model->where('users.verified', 1);
-        $model->where('users.banned', 0);
-        $model->join('user_basic_details', 'user_basic_details.user_id = users.id');
-        $model->join('user_church_details', 'user_church_details.user_id = users.id');
-        $model->join('user_family_details', 'user_family_details.user_id = users.id');
-        $model->join('user_personal_details', 'user_personal_details.user_id = users.id');
-        $model->join('user_physical_details', 'user_physical_details.user_id = users.id');
-        $model->join('fl_annual_income', 'fl_annual_income.id = user_personal_details.annual_income', 'left');
-        $model->join('fl_blood_group', 'fl_blood_group.id = user_physical_details.blood_group', 'left');
-        $model->join('fl_body_type', 'fl_body_type.id = user_physical_details.body_type', 'left');
-        $model->join('fl_complexion', 'fl_complexion.id = user_physical_details.complexion', 'left');
-        $model->join('fl_denomination', 'fl_denomination.id = user_church_details.denomination', 'left');
-        $model->join('fl_diet', 'fl_diet.id = user_personal_details.diet', 'left');
-        $model->join('fl_height', 'fl_height.id = user_physical_details.height', 'left');
-        $model->join('fl_highest_education', 'fl_highest_education.id = user_personal_details.highest_edu', 'left');
-        $model->join('fl_language', 'fl_highest_education.id = user_personal_details.language', 'left');
-        $model->join('fl_martial_status', 'fl_martial_status.id = user_basic_details.martial_status', 'left');
-        $model->join('fl_occupation', 'fl_highest_education.id = user_personal_details.occupation', 'left');
-        $model->join('fl_partner_expectation', 'fl_highest_education.id = user_personal_details.partner_expectation', 'left');
-
-        return $this->respond(['data' => $model->get()->getResultArray(), 'success' => true]);
+        $data = $model->getUsers();
+        return $this->respond(['data' => $data, 'success' => true]);
     }
+
+
 }

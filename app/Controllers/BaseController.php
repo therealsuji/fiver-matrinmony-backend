@@ -66,6 +66,9 @@ class BaseController extends Controller
         model('App\Models\Fields\MaritalStatusModel');
         model('App\Models\Fields\OccupationModel');
         model('App\Models\Fields\PartnerExpectationModel');
+        model('App\Models\Fields\CountryModel');
+        model('App\Models\Fields\CityModel');
+        model('App\Models\Fields\StateModel');
     }
 
 

@@ -5,7 +5,9 @@ namespace App\Controllers\Api;
 use App\Model\AnnualIncomeModel;
 use App\Model\BloodGroupModel;
 use App\Model\BodyTypeModel;
+use App\Model\CityModel;
 use App\Model\ComplexionModel;
+use App\Model\CountryModel;
 use App\Model\DenominationModel;
 use App\Model\DietModel;
 use App\Model\HeightModel;
@@ -14,6 +16,7 @@ use App\Model\LanguageModel;
 use App\Model\MaritalStatusModel;
 use App\Model\OccupationModel;
 use App\Model\PartnerExpectationModel;
+use App\Model\StateModel;
 use CodeIgniter\RESTful\ResourceController;
 
 class FormFields extends ResourceController
@@ -34,6 +37,9 @@ class FormFields extends ResourceController
         model('App\Models\Fields\MaritalStatusModel');
         model('App\Models\Fields\OccupationModel');
         model('App\Models\Fields\PartnerExpectationModel');
+        model('App\Models\Fields\StateModel');
+        model('App\Models\Fields\CityModel');
+        model('App\Models\Fields\CountryModel');
     }
 
     public function getAnnualIncome()
@@ -130,6 +136,27 @@ class FormFields extends ResourceController
         if ($this->request->getMethod() == "get") {
             $model = new ComplexionModel();
             return $this->respond(['data' => $model->findAll()]);
+        }
+    }
+
+    public function getCountries(){
+        if ($this->request->getMethod() == "get") {
+            $model = new CountryModel();
+            return $this->respond(['data' => $model->findAll()]);
+        }
+    }
+
+    public function getStates($id){
+        if ($this->request->getMethod() == "get") {
+            $model = new StateModel();
+            return $this->respond(['data' => $model->where('country',$id)->get()->getResultArray()]);
+        }
+    }
+
+    public function getCities($id){
+        if ($this->request->getMethod() == "get") {
+            $model = new CityModel();
+            return $this->respond(['data' => $model->where('state',$id)->get()->getResultArray()]);
         }
     }
 }

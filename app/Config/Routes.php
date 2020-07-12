@@ -5,9 +5,8 @@ $routes = Services::routes();
 
 // Load the system's routing file first, so that the app and ENVIRONMENT
 // can override as needed.
-if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
-{
-	require SYSTEMPATH . 'Config/Routes.php';
+if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
+    require SYSTEMPATH . 'Config/Routes.php';
 }
 
 /**
@@ -30,12 +29,12 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->match(['get','post'],'/', 'Login::index');
+$routes->match(['get', 'post'], '/', 'Login::index');
 $routes->get('/logout', 'Login::logOut');
 
 $routes->post('api/register-user', 'API\User::registerUser');
 $routes->post('api/login-user', 'API\User::loginUser');
-$routes->post('api/continue-registration','API\User::continueRegistration');
+$routes->post('api/continue-registration', 'API\User::continueRegistration');
 $routes->post('api/basic-details', 'API\User::basicDetails');
 $routes->post('api/family-details', 'API\User::familyDetails');
 $routes->post('api/church-details', 'API\User::churchDetails');
@@ -62,6 +61,10 @@ $routes->get('api/fields/get-height', 'API\FormFields::getHeight');
 $routes->get('api/fields/get-diet', 'API\FormFields::getDiet');
 $routes->get('api/fields/get-complexion', 'API\FormFields::getComplexion');
 
+$routes->get('api/fields/get-country', 'API\FormFields::getCountries');
+$routes->get('api/fields/get-state/(:segment)', 'API\FormFields::getStates/$1');
+$routes->get('api/fields/get-city/(:segment)', 'API\FormFields::getCities/$1');
+
 $routes->get('api/get-all-users/', 'API\User::getAllUsers');
 $routes->get('api/get-user/(:segment)', 'API\User::getUser/$1');
 
@@ -79,7 +82,6 @@ $routes->get('api/get-user/(:segment)', 'API\User::getUser/$1');
  * You will have access to the $routes object within that file without
  * needing to reload it.
  */
-if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php'))
-{
-	require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
+if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
+    require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }

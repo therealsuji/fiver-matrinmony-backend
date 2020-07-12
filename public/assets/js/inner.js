@@ -1,14 +1,19 @@
 $(document).ready(function () {
+    $('#userTable').DataTable();
+    $('#userTable-2').DataTable();
+    $('#userTable-3').DataTable();
+    $('#tableCountry').DataTable();
+    $('#tableState').DataTable( );
+    $('#tableCity').DataTable();
     $('#table').DataTable({
         columns: [
             {data: 'id'},
             {data: 'value'},
             {data: 'edit_action'},
             {data: 'delete_action'},
-         ]
+        ]
     });
     $.fn.dataTable.ext.errMode = 'none';
-
 });
 
 let firstPanelChild = $(".sidepanel").children('.nav-link').first();
@@ -23,12 +28,12 @@ function getNewValues(formType) {
         console.log(data);
 
         data = JSON.parse(data);
-        data = data.map((val)=>{
+        data = data.map((val) => {
             newItem = {
-                id:val.id,
-                value:val.field_value,
-                edit_action:`<i class="far fa-edit icon" onclick="openEditBox('${val.field_value}','${val.id}')"></i>`,
-                delete_action:`<i class="fas fa-trash-alt icon" onclick="deleteValue('${val.id}')"></i>`
+                id: val.id,
+                value: val.field_value,
+                edit_action: `<i class="far fa-edit icon" onclick="openEditBox('${val.field_value}','${val.id}')"></i>`,
+                delete_action: `<i class="fas fa-trash-alt icon" onclick="deleteValue('${val.id}')"></i>`
             }
             return newItem;
         })
@@ -113,11 +118,12 @@ function editValue() {
 }
 
 
-$('#v-pills-tab a').on('click', function (e) {
+$('#v-pills-tab-fields a').on('click', function (e) {
+
     formType = $(this).attr("data-formtype");
     $('#formtitle').text($(this).text());
     getNewValues(formType);
- })
+})
 
 function openEditBox(val, id) {
     $("#edit-value").val(val);
@@ -128,3 +134,4 @@ function openEditBox(val, id) {
 function closeEditBox() {
     $("#edit-box").css('display', 'none');
 }
+

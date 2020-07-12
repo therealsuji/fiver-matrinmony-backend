@@ -1,6 +1,6 @@
-<div class="row   ">
+<div class="row">
     <div class="col-md-2  ">
-        <div class="sidepanel nav flex-column nav-pills nav-column" id="v-pills-tab" role="tablist"
+        <div class="sidepanel nav flex-column nav-pills nav-column" id="v-pills-tab-fields" role="tablist"
              aria-orientation="vertical">
             <a class="nav-link active" id="v-pills-annual-income-tab" data-toggle="pill"
                role="tab" data-formtype="annualincome"
@@ -42,65 +42,71 @@
                role="tab"
                data-formtype="partnerexpec"
                aria-controls="v-pills-partnerexpec" aria-selected="false">Partner Expectation</a>
+
         </div>
     </div>
 
     <div class="col-md-10">
-        <h4 style="margin-top: 25px;" id="formtitle" ></h4>
-        <div class="row">
-            <div class="col-md-5 mt-2">
-                <div class="value-box">
-                    <label class="value-edit-label" for="">Add a value</label>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Enter a new value</label>
-                        <input type="text" class="form-control" id="new-value">
+
+        <div id="static-content">
+            <h4 style="margin-top: 25px;" id="formtitle"></h4>
+            <div class="row">
+                <div class="col-md-5 mt-2">
+                    <div class="value-box">
+                        <label class="value-edit-label" for="">Add a value</label>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Enter a new value</label>
+                            <input type="text" class="form-control" id="new-value">
+                        </div>
+                        <button onclick="addValue();" type="button"
+                                class="btn btn-primary">Submit
+                        </button>
                     </div>
-                    <button onclick="addValue();" type="button"
-                            class="btn btn-primary">Submit
-                    </button>
+                </div>
+                <div class="col-md-5 mt-2">
+                    <h4 id="formtitle"></h4>
+                    <div class="value-box" id="edit-box" style="display: none">
+                        <div class="label-wrapper">
+                            <label class="value-edit-label" for="">Edit a value</label>
+                            <i onclick="closeEditBox()" class="fas fa-times-circle icon"></i>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Enter a new value</label>
+                            <input type="text" class="form-control" id="edit-value">
+                            <input type="hidden" value="" id="edit-id">
+                        </div>
+                        <button onclick="editValue();" type="button"
+                                class="btn btn-primary">Submit
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-5 mt-2">
-                <h4 id="formtitle" ></h4>
-                <div class="value-box" id="edit-box" style="display: none">
-                    <div class="label-wrapper">
-                        <label class="value-edit-label" for="">Edit a value</label>
-                        <i onclick="closeEditBox()" class="fas fa-times-circle icon"></i>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Enter a new value</label>
-                        <input type="text" class="form-control" id="edit-value">
-                        <input type="hidden" value="" id="edit-id">
-                    </div>
-                    <button onclick="editValue();" type="button"
-                            class="btn btn-primary">Submit
-                    </button>
-                </div>
-            </div>
-        </div>
 
-        <div class="col-md-12 datatable">
-            <table id="table" class="display" style="width:100%">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Value</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-
-                </tr>
-                </thead>
-                <tbody>
-                <?php foreach ($data as $item): ?>
+            <div class="col-md-12 datatable">
+                <table id="table" class="display" style="width:100%">
+                    <thead>
                     <tr>
-                        <td><?= $item['id'] ?></td>
-                        <td><?= $item['field_value'] ?></td>
-                        <td><i class="far fa-edit icon" onclick="openEditBox('<?=$item['field_value']?>',<?= $item['id'] ?>)"></i></td>
-                        <td><i class="fas fa-trash-alt icon" onclick="deleteValue(<?= $item['id'] ?>)"></i></td>
+                        <th>ID</th>
+                        <th>Value</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+
                     </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($data as $item): ?>
+                        <tr>
+                            <td><?= $item['id'] ?></td>
+                            <td><?= $item['field_value'] ?></td>
+                            <td><i class="far fa-edit icon"
+                                   onclick="openEditBox('<?= $item['field_value'] ?>',<?= $item['id'] ?>)"></i></td>
+                            <td><i class="fas fa-trash-alt icon" onclick="deleteValue(<?= $item['id'] ?>)"></i></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
+
     </div>
 </div>
