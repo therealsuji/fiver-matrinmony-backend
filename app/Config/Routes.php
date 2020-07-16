@@ -47,6 +47,7 @@ $routes->get('api/family-details/(:segment)', 'API\User::getUserFamilyDetails/$1
 $routes->get('api/church-details/(:segment)', 'API\User::getUserChurchDetails/$1');
 $routes->get('api/personal-details/(:segment)', 'API\User::getUserPersonalDetails/$1');
 $routes->get('api/physical-details/(:segment)', 'API\User::getUserPhysicalDetails/$1');
+$routes->get('api/user-photos/(:segment)', 'API\User::getUserPhotos/$1');
 
 $routes->get('api/fields/get-annual-income', 'API\FormFields::getAnnualIncome');
 $routes->get('api/fields/get-blood-group', 'API\FormFields::getBloodGroup');
@@ -60,6 +61,7 @@ $routes->get('api/fields/get-language', 'API\FormFields::getLanguage');
 $routes->get('api/fields/get-height', 'API\FormFields::getHeight');
 $routes->get('api/fields/get-diet', 'API\FormFields::getDiet');
 $routes->get('api/fields/get-complexion', 'API\FormFields::getComplexion');
+$routes->get('api/fields/get-ministry', 'API\FormFields::getMinistry');
 
 $routes->get('api/fields/get-country', 'API\FormFields::getCountries');
 $routes->get('api/fields/get-state/(:segment)', 'API\FormFields::getStates/$1');
@@ -67,6 +69,8 @@ $routes->get('api/fields/get-city/(:segment)', 'API\FormFields::getCities/$1');
 
 $routes->get('api/get-all-users/', 'API\User::getAllUsers');
 $routes->get('api/get-user/(:segment)', 'API\User::getUser/$1');
+
+$routes->post('api/user-file-upload', 'API\User::uploadUserPhotos');
 
 
 /**

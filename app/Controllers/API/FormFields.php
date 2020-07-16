@@ -16,6 +16,7 @@ use App\Model\LanguageModel;
 use App\Model\MaritalStatusModel;
 use App\Model\OccupationModel;
 use App\Model\PartnerExpectationModel;
+use App\Model\MinistryModel;
 use App\Model\StateModel;
 use CodeIgniter\RESTful\ResourceController;
 
@@ -40,6 +41,7 @@ class FormFields extends ResourceController
         model('App\Models\Fields\StateModel');
         model('App\Models\Fields\CityModel');
         model('App\Models\Fields\CountryModel');
+        model('App\Models\Fields\MinistryModel');
     }
 
     public function getAnnualIncome()
@@ -62,6 +64,15 @@ class FormFields extends ResourceController
     {
         if ($this->request->getMethod() == "get") {
             $model = new BodyTypeModel();
+            return $this->respond(['data' => $model->findAll()]);
+        }
+
+    }
+
+    public function getMinistry()
+    {
+        if ($this->request->getMethod() == "get") {
+            $model = new MinistryModel();
             return $this->respond(['data' => $model->findAll()]);
         }
 

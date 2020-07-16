@@ -42,6 +42,10 @@
                role="tab"
                data-formtype="partnerexpec"
                aria-controls="v-pills-partnerexpec" aria-selected="false">Partner Expectation</a>
+            <a class="nav-link" id="v-pills-ministry-tab" data-toggle="pill"
+               role="tab"
+               data-formtype="ministry"
+               aria-controls="v-pills-ministry" aria-selected="false">Ministry</a>
 
         </div>
     </div>

@@ -150,6 +150,8 @@ input[type=text]::placeholder {
 
 #icon {
   width: 60%;
+  margin-top: 80px;
+  margin-bottom: 40px;
 }
 
 .login-form label, .login-form .error {

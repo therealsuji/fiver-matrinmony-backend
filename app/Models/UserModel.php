@@ -80,7 +80,13 @@ class UserModel extends Model
 
     public function getUsers($userId = null, $admin = false)
     {
-        $this->select('user_church_details.*,user_family_details.*,user_personal_details.*,user_physical_details.*,user_basic_details.*,
+        $this->select('
+        user_church_details.*,
+        user_family_details.*,
+        user_personal_details.*,
+        user_physical_details.*,
+        user_basic_details.*,
+        user_photos.*,
         fl_annual_income.field_value as annual_income,
         fl_blood_group.field_value as blood_group,
         fl_body_type.field_value as body_type,
@@ -110,6 +116,7 @@ class UserModel extends Model
         $this->join('user_family_details', 'user_family_details.user_id = users.id');
         $this->join('user_personal_details', 'user_personal_details.user_id = users.id');
         $this->join('user_physical_details', 'user_physical_details.user_id = users.id');
+        $this->join('user_photos', 'user_photos.user_id = users.id');
         $this->join('fl_annual_income', 'fl_annual_income.id = user_personal_details.annual_income', 'left');
         $this->join('fl_blood_group', 'fl_blood_group.id = user_physical_details.blood_group', 'left');
         $this->join('fl_body_type', 'fl_body_type.id = user_physical_details.body_type', 'left');
@@ -144,8 +151,8 @@ class UserModel extends Model
         if($userId){
             $users = $this->getUsers($userId, true);
             $isCompleted = true;
-            foreach ($users[0] as $field) {
-                if ($field == '' || $field == null) {
+            foreach ($users[0] as  $key => $field) {
+                if (($field == '' || $field == null) && $key != 'image1' && $key != 'image2' && $key != 'image3') {
                     $isCompleted = false;
                     break;
                 }
@@ -158,10 +165,11 @@ class UserModel extends Model
         }
 
         $users = $this->getUsers(null, true);
-        foreach ($users as $item) {
+        foreach ($users as $key => $item) {
             $isCompleted = true;
-            foreach ($item as $field) {
-                if ($field == '' || $field == null) {
+
+            foreach ($item as $key => $field) {
+                 if (($field == '' || $field == null) && $key != 'image1' && $key != 'image2' && $key != 'image3') {
                     $isCompleted = false;
                     break;
                 }

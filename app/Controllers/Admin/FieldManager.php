@@ -13,6 +13,7 @@ use App\Model\HeightModel;
 use App\Model\HighestEducationModel;
 use App\Model\LanguageModel;
 use App\Model\MaritalStatusModel;
+use App\Model\MinistryModel;
 use App\Model\OccupationModel;
 use App\Model\PartnerExpectationModel;
 use App\Model\StateModel;
@@ -26,13 +27,13 @@ class FieldManager extends BaseController
         echo view('templates/header');
         echo view('templates/navbar', array('currentUrl' => $currentUrl));
         $model = new AnnualIncomeModel();
-        $data['data'] =$model->findAll();
+        $data['data'] = $model->findAll();
         $model = new CountryModel();
-        $data['country'] =$model->findAll();
+        $data['country'] = $model->findAll();
         $model = new CityModel();
-        $data['city'] =$model->findAll();
+        $data['city'] = $model->findAll();
         $model = new StateModel();
-        $data['state'] =$model->findAll();
+        $data['state'] = $model->findAll();
 
         echo view('fieldManager', $data);
         echo view('templates/footer');
@@ -46,8 +47,6 @@ class FieldManager extends BaseController
             return json_encode($model->findAll());
         }
     }
-
-
 
 
     private function getModelType($formType)
@@ -90,10 +89,11 @@ class FieldManager extends BaseController
             case "partnerexpec":
                 $model = new PartnerExpectationModel();
                 break;
+            case "ministry":
+                $model = new MinistryModel();
         }
         return $model;
     }
-
 
 
     public function fieldvaluechange()
@@ -108,7 +108,7 @@ class FieldManager extends BaseController
             if ($action == 'add') {
                 $id = $model->save(["field_value" => $value]);
 
-                return json_encode([ 'status' => 200]);
+                return json_encode(['status' => 200]);
             } elseif ($action == 'del' && $id) {
                 if ($id) {
                     $model->delete($id);

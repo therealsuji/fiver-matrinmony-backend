@@ -27,7 +27,7 @@ class BaseController extends Controller
      *
      * @var array
      */
-    protected $helpers = ['form'];
+    protected $helpers = ['form','url'];
     protected $session;
 
     /**
@@ -69,6 +69,8 @@ class BaseController extends Controller
         model('App\Models\Fields\CountryModel');
         model('App\Models\Fields\CityModel');
         model('App\Models\Fields\StateModel');
+        model('App\Models\Fields\MinistryModel');
+        model('App\Models\UserPhotos');
     }
 
 

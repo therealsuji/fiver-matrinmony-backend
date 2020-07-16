@@ -747,7 +747,8 @@ abstract class BaseHandler implements ImageHandlerInterface
 	 */
 	public abstract function getVersion();
 
-	//--------------------------------------------------------------------
+	//-------------------------
+    //-------------------------------------------
 
 	/**
 	 * Saves any changes that have been made to file.
